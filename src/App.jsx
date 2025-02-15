@@ -1,17 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useRef,useState } from 'react';
 import Chatboticon from "./components/Chatboticon"
 import ChatForm from "./components/ChatForm"
 import ChatMessage from "./components/ChatMessage"
+//import { companyInfo } from "./components/hope"
 
 const App = () => {
 
-  const [chatHistory, setChatHistory] = useState([]);
+  const [chatHistory, setChatHistory] = useState([/*{
+    hideInChat: true,
+    role: "model",
+    text: companyInfo
+  }*/]);
+  const [showChatbot, setShowChatbot] = useState(false);
+  const chatBodyRef = useRef();
 
   const generateBotResponse = async(history) => {
 
     //helper function Update chat history with "Thinking..." message
-    const updateHistory = (text) => {
-      setChatHistory(prev => [...prev.filter(msg => msg.text !== "Thinking..."), {role: "model", text}]);
+    const updateHistory = (text, isError = false) => {
+      setChatHistory(prev => [...prev.filter(msg => msg.text !== "Thinking..."), {role: "model", text, isError}]);
     }
 
 
@@ -43,15 +50,32 @@ const App = () => {
 
     }
     catch (error){
-      console.log(error);
+      updateHistory(error.message,true);
     }
 
   }
 
 
+  useEffect(() => {
+    // Auto scroll whenever chat history is updated
+    chatBodyRef.current.scrollTo({top: chatBodyRef.current.scrollHeight, behavior : "smooth"});
+
+  }, [chatHistory]);
+
+
 
   return (
-    <div className="container">
+    <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
+
+      <button onClick={()=> setShowChatbot((prev) => !prev)} 
+      id="chatbot-toggler">
+        <span className="material-symbols-rounded">mode_comment</span>
+        <span className="material-symbols-rounded">close</span>
+
+      </button>
+
+
+
       <div className="chatbot-popup">
         {/* Chatbot header */}
         <div className="chat-header">
@@ -59,16 +83,17 @@ const App = () => {
             <Chatboticon />
             <h2 className="logo-text">Chatbot</h2>
           </div>
-          <button className="material-symbols-rounded">keyboard_arrow_down</button>
+          <button onClick={()=> setShowChatbot((prev) => !prev)}
+          className="material-symbols-rounded">keyboard_arrow_down</button>
         </div>
 
         {/* Chatbot body */}
 
-        <div className="chat-body">
+        <div ref={chatBodyRef} className="chat-body">
           <div className="message bot-message">
           <Chatboticon />
           <p className="message-text">
-            Hello! I am Chatbot. How can I help you today?
+          I am your friendly Hope Chatbot ☺️, here to assist you and motivate you to achieve your goals!!!
           </p>
           </div>
 
