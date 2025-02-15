@@ -29,7 +29,7 @@ body{
     outline: none;
     cursor: pointer;
     border-radius: 50%;
-    background: #6D4FC2;
+    background: #008000;/* #6D4FC2;*/
     color: #fff;
     font-size: 1.9rem;
     display: flex;
@@ -95,7 +95,7 @@ body{
     padding: 15px 22px;
     align-items: center;
     justify-content: space-between;
-    background: #6D4FC2;
+    background: #008000; /*#6D4FC2;*/
 }
 
 .chat-header .header-info {
@@ -112,8 +112,7 @@ body{
     fill:#6D4FC2;
     background: #FFFF8F;
     border-radius: 50%;
-    outline: 2px solid #593bab; /* Add outline */
-    outline-offset: -2px; /* Adjust offset to follow border-radius */
+    
 }
 
 .header-info .logo-text {
@@ -138,7 +137,7 @@ body{
 }
 
 .chat-header button:hover {
-    background: #593bab;
+    background: #228B22;
 }
 
 .chat-body {
@@ -174,7 +173,7 @@ body{
     background: #FFFF8F;
     outline: #593bab;
     border-radius: 50%;
-    outline: 2px solid #593bab; /* Add outline */
+    outline: 2px solid #008000; /* Add outline */
     outline-offset: -2px; /* Adjust offset to follow border-radius */
 }
 
@@ -188,7 +187,7 @@ body{
 }
 
 .chat-body .bot-message .message-text {
-    background: #F6F2FF;
+    background: #ccfacc;
     border-radius: 13px 13px 13px 3px;
 }
 
@@ -199,7 +198,7 @@ body{
 
 .chat-body .user-message .message-text {
     color: #fff;
-    background: #6D4FC2;
+    background: #2E8B57;
     border-radius: 13px 13px 3px 13px;
 }
 
@@ -221,7 +220,7 @@ body{
 }
 
 .chat-footer .chat-form:focus-within {
-    outline: 2px solid #6D4FC2;
+    outline: 2px solid #008000;
 } 
 
 
@@ -247,13 +246,13 @@ body{
     flex-shrink: 0;
     margin-right: 6px;
     border-radius: 50%;
-    background: #6D4FC2;
+    background: #32CD32;
     transition: 0.2s ease;
    
 }
 
 .chat-form button:hover {
-    background: #593bab;
+    background: #228B22;
 }
 
 .chat-form .message-input:valid~button {
