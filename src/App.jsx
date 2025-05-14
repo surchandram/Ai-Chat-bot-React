@@ -35,7 +35,7 @@ const App = () => {
 
     try{
       //make the api call to get the bot response
-      const response = await fetch(import.meta.env.VITE_API_URL, requestOption);
+      const response = await fetch("https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=AIzaSyBP_6SBgG5Ag5mp0LNM2oN3gtezgBlzLNg", requestOption);
       const data = await response.json();
       if(!response.ok)
         throw new Error(data.message || "Something went wrong");
